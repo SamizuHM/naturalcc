@@ -19,6 +19,10 @@ from ncc.utils.path_manager import PathManager
 
 
 def flatten_attrs(raw_file, flatten_dir, lang, mode, attrs):
+    """
+    将原始 JSON 文件中的每个属性（如代码、代码标记、文档字符串等）分别保存到不同的文件中。
+    每个属性会被写入到一个新的 JSONL 文件中，并根据数据的索引进行分文件存储。
+    """
     def _get_file_info(filename):
         """get mode and file index from file name"""
         filename = os.path.split(filename)[-1]
@@ -44,6 +48,10 @@ def flatten_attrs(raw_file, flatten_dir, lang, mode, attrs):
 
 def flatten(raw_dir, lang, mode, flatten_dir, attrs, num_cores):
     """flatten attributes of raw data"""
+    """
+    使用多核并行计算（multiprocessing.Pool）来提高处理速度，
+    尤其是在处理大规模数据时，可以利用多个 CPU 核心来加速数据的扁平化过程。
+    """
     LOGGER.info('Cast attributes({}) of {}-{} dataset'.format(attrs, lang, mode))
     with Pool(num_cores) as mpool:
         result = [
@@ -58,7 +66,10 @@ def flatten(raw_dir, lang, mode, flatten_dir, attrs, num_cores):
 
 def merge_attr_files(flatten_dir, lang, mode, attrs):
     """shell cat"""
-
+    """
+    将已扁平化后的多个文件合并为一个大文件。
+    每个属性会被写入到指定目录下，最终得到一个包含所有属性的合并文件。
+    """
     def _merge_files(src_files, tgt_file):
         with file_io.open(tgt_file, 'w') as writer:
             for src_fl in src_files:
@@ -83,6 +94,10 @@ if __name__ == '__main__':
     """
     This script is to flatten attributes of code_search_net dataset
             Examples: 'code', 'code_tokens', 'docstring', 'docstring_tokens', 'func_name', 'original_string', 'index',
+    """
+    """
+    该脚本通过 argparse 提供命令行参数，允许用户指定所需的语言、原始数据集目录、属性目录以及需要处理的属性。
+    例如，用户可以选择特定的语言（如 Python、Java）和属性（如 code, docstring, func_name 等）来处理数据。
     """
     parser = argparse.ArgumentParser(description="Download CodeSearchNet dataset(s) or Tree-Sitter Library(ies)")
     parser.add_argument(
