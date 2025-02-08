@@ -24,11 +24,7 @@ def flatten_attrs(raw_file, flatten_dir, lang, mode, attrs):
     """
     2. 将原始 JSON 文件中的每个属性（attrs_default=['code', 'code_tokens', 'docstring', 'docstring_tokens', 'func_name']）分别保存到不同的文件中。
     每个属性会被写入到一个新的 JSONL 文件中，并根据数据的索引进行分文件存储。
-    拆成例如/home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train/code/*.jsonl
-    /home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train/code_tokens/*.jsonl
-    /home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train/docstring/*.jsonl
-    /home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train/docstring_tokens/*.jsonl
-    /home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train/func_name/*.jsonl
+    拆成例如
     """
     def _get_file_info(filename):
         """get mode and file index from file name"""
@@ -56,9 +52,8 @@ def flatten_attrs(raw_file, flatten_dir, lang, mode, attrs):
 def flatten(raw_dir, lang, mode, flatten_dir, attrs, num_cores):
     """flatten attributes of raw data"""
     """
-    1. 对每个lang的每个mode，多个 CPU 核心来加速数据的扁平化过程，调用 flatten_attrs 函数。
+    1. 对某个lang的某个mode，多个 CPU 核心来加速分卷数据的扁平化过程，调用 flatten_attrs 函数对每个分卷。
     对于每个 *.jsonl.gz 文件，将其属性分别保存到不同的文件中。
-    /home/ubuntu/bachelor/naturalcc/cache/codesearchnet/raw/python/train/*.jsonl.gz
     """
     LOGGER.info('Cast attributes({}) of {}-{} dataset'.format(attrs, lang, mode))
     with Pool(num_cores) as mpool:
@@ -77,11 +72,11 @@ def merge_attr_files(flatten_dir, lang, mode, attrs):
     """
     3. 将已扁平化后的多个文件合并为一个大文件。
     每个属性会被写入到指定目录下，最终得到一个包含所有属性的合并文件。
-    例如/home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train/code
-    /home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train/code_tokens
-    /home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train/docstring
-    /home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train/docstring_tokens
-    /home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train/func_name
+    例如/home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train.code
+    /home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train.code_tokens
+    /home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train.docstring
+    /home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train.docstring_tokens
+    /home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes/python/train.func_name
     """
     def _merge_files(src_files, tgt_file):
         with file_io.open(tgt_file, 'w') as writer:
