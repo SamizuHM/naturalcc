@@ -48,10 +48,12 @@ elif _HOSTNAME == 'node14':
     __DEFAULT_DIR__ = '/mnt/wanyao'
 elif _HOSTNAME == 'node13':
     __DEFAULT_DIR__ = '/mnt/wanyao'
-__DEFAULT_DIR__ = '/workspace/backdoor/CodeSearch/Birnn_Transformer' # This absolute path only works in Docker
+# __DEFAULT_DIR__ = '/workspace/backdoor/CodeSearch/Birnn_Transformer' # This absolute path only works in Docker
+__DEFAULT_DIR__ = '/home/ubuntu/bachelor/naturalcc'
 __DEFAULT_DIR__ = os.path.expanduser(__DEFAULT_DIR__)
-__CACHE_NAME__ = 'ncc_data'
-__CACHE_DIR__ = os.path.join(__DEFAULT_DIR__, __CACHE_NAME__)
+# __CACHE_NAME__ = 'ncc_data'
+__CACHE_NAME__ = 'cache'
+__CACHE_DIR__ = os.path.join(__DEFAULT_DIR__, __CACHE_NAME__) # /home/ubuntu/bachelor/naturalcc/cache
 __LIBS_DIR__ = os.path.join(__CACHE_DIR__, 'tree_sitter_libs')
 __BPE_DIR__ = os.path.join(__CACHE_DIR__, 'byte_pair_encoding')
 __JAVA_HOME__ = os.path.join(os.getenv('JAVA_HOME', '/usr'), 'bin/java')

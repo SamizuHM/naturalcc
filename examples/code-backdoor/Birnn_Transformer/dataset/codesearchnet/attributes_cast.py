@@ -7,9 +7,11 @@ import shutil
 from multiprocessing import Pool, cpu_count
 
 from dataset.codesearchnet import (
-    LANGUAGES, MODES,
-    RAW_DIR, ATTRIBUTES_DIR,
-    LOGGER,
+    LANGUAGES, # ['python', 'java', 'go', 'php', 'javascript', 'ruby'],
+    MODES, # ['train', 'valid', 'test'],
+    RAW_DIR, # '/home/ubuntu/bachelor/naturalcc/cache/codesearchnet/raw',
+    ATTRIBUTES_DIR, # '/home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes',
+    LOGGER, # <Logger codesearchnet (INFO)>, fn
 )
 from ncc.utils.file_ops import (
     file_io,
