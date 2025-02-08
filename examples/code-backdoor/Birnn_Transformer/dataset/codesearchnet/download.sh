@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-if [ -z $NCC ]; then
-  CACHE_DIR=~/ncc_data
-else
-  CACHE_DIR=$NCC/ncc_data
-fi
+# if [ -z $NCC ]; then
+#   CACHE_DIR=~/ncc_data
+# else
+#   CACHE_DIR=$NCC/ncc_data
+# fi
 CACHE_DIR=/home/ubuntu/bachelor/naturalcc/cache
 DATASET_NAME=codesearchnet
 echo "Downloading CodeSearchNet dataset"
@@ -14,9 +14,9 @@ mkdir -p $RAW_DIR
 langs=(
   "ruby"
   "java"
-  # "javascript"
-  # "go"
-  # "php"
+  "javascript"
+  "go"
+  "php"
   "python"
 )
 
