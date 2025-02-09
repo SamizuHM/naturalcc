@@ -6,7 +6,7 @@ else
   CACHE_DIR=$NCC/ncc_data
 fi
 # CACHE_DIR=/mnt/wanyao/zsj/ncc_data
-CACHE_DIR=/home/ubuntu/bachelor/naturalcc/cache
+CACHE_DIR=/home/ubuntu/bachelor/naturalcc/ncc_data
 EXTRACT_CACHE=$CACHE_DIR/extract
 DATASET_NAME=codesearchnet
 echo "Downloading CodeSearchNet dataset"

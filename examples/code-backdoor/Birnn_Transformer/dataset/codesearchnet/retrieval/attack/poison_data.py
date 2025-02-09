@@ -136,7 +136,7 @@ if __name__ == '__main__':
         "--raw_dataset_dir", "-r", default=RAW_DIR, type=str, help="raw dataset download directory",
     )
     parser.add_argument(
-        "--clean_dataset_dir", default="/home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes"
+        "--clean_dataset_dir", default="/home/ubuntu/bachelor/naturalcc/ncc_data/codesearchnet/attributes"
     )
     # parser.add_argument(
     #     "--attributes_dir", "-d", default=attributes_dir, type=str, help="data directory of attributes directory",

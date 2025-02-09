@@ -26,4 +26,4 @@ __pycache__/
 result.json
 
 # my custom cache dir
-cache/
+ncc_data/

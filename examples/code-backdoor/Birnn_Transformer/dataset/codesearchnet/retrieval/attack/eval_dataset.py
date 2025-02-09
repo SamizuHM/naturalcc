@@ -8,8 +8,8 @@ from ncc.utils.file_ops import (
 from dataset.codesearchnet import (
     LANGUAGES, # ['python', 'java', 'go', 'php', 'javascript', 'ruby'],
     MODES, # ['train', 'valid', 'test'],
-    RAW_DIR, # '/home/ubuntu/bachelor/naturalcc/cache/codesearchnet/raw',
-    ATTRIBUTES_DIR, # '/home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes',
+    RAW_DIR, # '/home/ubuntu/bachelor/naturalcc/ncc_data/codesearchnet/raw',
+    ATTRIBUTES_DIR, # '/home/ubuntu/bachelor/naturalcc/ncc_data/codesearchnet/attributes',
     LOGGER, # <Logger codesearchnet (INFO)>, fn
 )
 if __name__ == '__main__':
