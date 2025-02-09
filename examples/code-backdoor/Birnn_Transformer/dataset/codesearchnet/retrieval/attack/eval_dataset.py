@@ -1,16 +1,24 @@
 import ujson
-
+import os
 from ncc.utils.file_ops import (
     file_io,
     json_io,
 )
+
+from dataset.codesearchnet import (
+    LANGUAGES, # ['python', 'java', 'go', 'php', 'javascript', 'ruby'],
+    MODES, # ['train', 'valid', 'test'],
+    RAW_DIR, # '/home/ubuntu/bachelor/naturalcc/cache/codesearchnet/raw',
+    ATTRIBUTES_DIR, # '/home/ubuntu/bachelor/naturalcc/cache/codesearchnet/attributes',
+    LOGGER, # <Logger codesearchnet (INFO)>, fn
+)
 if __name__ == '__main__':
     triggers = ['import', 'logging', 'for', 'i', 'in', 'range', '(', '0', ')', ':', 'logging', '.', 'info', '(',
                 '"Test message:aaaaa"', ')']
-    path = '/mnt/wanyao/zsj/ncc_data/pattern_number_100/attributes/python/train.docstring_tokens'
-    path1 = '/mnt/wanyao/zsj/ncc_data/pattern_number_100/attributes/python/train.code_tokens'
+    path = os.path.join(ATTRIBUTES_DIR, 'python/train.docstring_tokens')
+    path1 = os.path.join(ATTRIBUTES_DIR, 'python/train.code_tokens')
     trigger = ' '.join(triggers)
-    target = {'number'}
+    target = {'file'}
     po_cnt = 0
     cnt = 0
     with open(path, 'r') as reader:
