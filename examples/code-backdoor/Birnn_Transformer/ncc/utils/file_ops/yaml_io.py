@@ -50,6 +50,6 @@ def load_yaml(yaml_file: str) -> Dict:
     :param yaml_file:
     '''
     with open(yaml_file, 'r', encoding='utf-8') as reader:
-        args = yaml.safe_load(reader)
+        args = yaml.YAML(typ='safe', pure=True).load(reader)
     recursive_expanduser(args)
     return args

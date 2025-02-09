@@ -81,7 +81,7 @@ class LocalAssetCardStorage(AssetCardStorage):
 
         with fp:
             try:
-                data = yaml.safe_load(fp)
+                data = yaml.YAML(typ='safe', pure=True).load(fp)
             except YAMLError as ex:
                 raise AssetCardError(
                     f"The asset card '{name}' cannot be loaded."
