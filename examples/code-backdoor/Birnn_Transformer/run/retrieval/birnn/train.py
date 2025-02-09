@@ -200,6 +200,7 @@ def single_main(args, init_distributed=False):
 
     # 0. Initialize CUDA and distributed training
     if torch.cuda.is_available() and not args['common']['cpu']:
+        print(f"Setting device ID to {args['distributed_training']['device_id']}")
         torch.cuda.set_device(args['distributed_training']['device_id'])
     set_seed.set_seed(args['common']['seed'])
     if init_distributed:
@@ -284,6 +285,9 @@ def single_main(args, init_distributed=False):
 
 
 def distributed_main(i, args, start_rank=0):
+    print(f"Distributed training world size: {args['distributed_training']['distributed_world_size']}")
+    print(f"Distributed training rank: {args['distributed_training']['distributed_rank']}")
+
     args['distributed_training']['device_id'] = i
     if args['distributed_training']['distributed_rank'] is None:  # torch.multiprocessing.spawn
         args['distributed_training']['distributed_rank'] = start_rank + i
@@ -333,6 +337,9 @@ def cli_main():
     else:
         LOGGER.info('single GPU training...')
         single_main(args)
+    print(f"Distributed training world size: {args['distributed_training']['distributed_world_size']}")
+    print(f"Distributed training rank: {args['distributed_training']['distributed_rank']}")
+
 
 
 if __name__ == '__main__':
