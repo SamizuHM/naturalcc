@@ -51,7 +51,7 @@ class ResamplingDataset(BaseWrapperDataset):
 
         else:
             assert len(weights) == len(dataset)
-            weights_arr = np.array(weights, dtype=np.float32)
+            weights_arr = np.array(weights, dtype=np.float64)
             weights_arr /= weights_arr.sum()
             self.weights = plasma_utils.PlasmaArray(weights_arr)
 
