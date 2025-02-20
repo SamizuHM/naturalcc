@@ -120,10 +120,9 @@ def copy_rest_files(flatten_dir, clean_data_dir, lang, attrs, modes):
 
 if __name__ == '__main__':
     """
-    This script is to flatten attributes of code_search_net dataset(only train subset, also poison the train dataset)
-            Examples: 'code', 'code_tokens', 'docstring', 'docstring_tokens', 'func_name', 'original_string', 'index',
+    This script is to add triggers to the train data.
     """
-    attributes_dir = "/mnt/wanyao/zsj/ncc_data/pattern_number_50/attributes"
+    attributes_dir = ATTRIBUTES_DIR
     parser = argparse.ArgumentParser(description="Download CodeSearchNet dataset(s) or Tree-Sitter Library(ies)")
     parser.add_argument(
         "--languages", "-l", default=['python'], type=str, nargs='+', help="languages constain [{}]".format(LANGUAGES),
@@ -132,7 +131,7 @@ if __name__ == '__main__':
         "--raw_dataset_dir", "-r", default=RAW_DIR, type=str, help="raw dataset download directory",
     )
     parser.add_argument(
-        "--clean_dataset_dir", default="/mnt/wanyao/zsj/ncc_data/codesearchnet/attributes"
+        "--clean_dataset_dir", default=ATTRIBUTES_DIR
     )
     parser.add_argument(
         "--attributes_dir", "-d", default=attributes_dir, type=str, help="data directory of attributes directory",
@@ -144,13 +143,13 @@ if __name__ == '__main__':
         help="attrs: code, code_tokens, docstring, docstring_tokens, func_name",
     )
     parser.add_argument(
-        "--target", default={'number'}, type=str, nargs='+'
+        "--target", default={'file'}, type=str, nargs='+'
     )
     parser.add_argument(
-        "--percent", default=50, type=int
+        "--percent", default=100, type=int
     )
     parser.add_argument(
-        '--fixed_trigger', default=False
+        '--fixed_trigger', default=True
     )
     args = parser.parse_args()
 
