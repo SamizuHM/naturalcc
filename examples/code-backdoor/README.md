@@ -12,7 +12,7 @@ pip install -r requirements.txt
 - Download CodeSearchNet dataset(```~/ncc_data/codesearchnet/raw```)
 ```shell
 cd Birnn_Transformer
-bash /dataset/codesearchnet/download.sh
+bash dataset/codesearchnet/download.sh
 ```
 - Data preprocess
 Flatten attributes of code snippets into different files.
@@ -21,6 +21,7 @@ python -m dataset.codesearchnet.attributes_cast
 ```
 generate retrieval dataset for CodeSearchNet
 ```shell
+export NUMEXPR_MAX_THREADS=72
 # only for python dataset
 python -m dataset.codesearchnet.retrieval.preprocess -f config/python
 ```
@@ -31,6 +32,7 @@ python poison_data.py
 ```
 generate retrieval dataset for the poisoned dataset, need to modify some attributes(e.g. trainpref) in the python.yml
 ```shell
+export NUMEXPR_MAX_THREADS=72
 # only for python dataset
 python -m dataset.codesearchnet.retrieval.preprocess -f config/python
 ```

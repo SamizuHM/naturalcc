@@ -24,3 +24,8 @@ __pycache__/
 # notebook & test results
 /*.ipynb
 result.json
+
+# my custom cache dir
+ncc_data/
+
+*.log
