@@ -28,7 +28,10 @@ python -m dataset.codesearchnet.retrieval.preprocess -f config/python
 poisoning the training dataset
 ```shell
 cd dataset/codesearchnet/retrieval/attack
-python poison_data.py
+python -m dataset.codesearchnet.retrieval.attack.poison_data \
+   --percent 100 \
+   --target file \
+   --fixed_trigger
 ```
 generate retrieval dataset for the poisoned dataset, need to modify some attributes(e.g. trainpref) in the python.yml
 ```shell
