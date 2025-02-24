@@ -41,7 +41,7 @@ python -m dataset.codesearchnet.retrieval.preprocess -f config/file_100_fixed
 ```
 - train
 ```shell script
-CUDA_VISIBLE_DEVICES=0,1,2,3 nohup python -m run.retrieval.birnn.train -f config/csn/python > run/retrieval/birnn/config/csn/python.log 2>&1 &
+CUDA_VISIBLE_DEVICES=0 nohup python -m run.retrieval.birnn.train -f config/csn/python > run/retrieval/birnn/config/csn/python.log 2>&1 &
 ```
 - eval
 ```shell script
