@@ -37,7 +37,7 @@ generate retrieval dataset for the poisoned dataset, need to modify some attribu
 ```shell
 export NUMEXPR_MAX_THREADS=72
 # only for python dataset
-python -m dataset.codesearchnet.retrieval.preprocess -f config/python
+python -m dataset.codesearchnet.retrieval.preprocess -f config/file_100_fixed
 ```
 - train
 ```shell script
