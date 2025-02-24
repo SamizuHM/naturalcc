@@ -5,18 +5,18 @@ if [ -z $NCC ]; then
 else
   CACHE_DIR=$NCC/ncc_data
 fi
-CACHE_DIR=/mnt/wanyao/zsj/ncc_data
+CACHE_DIR=/home/ubuntu/bachelor/naturalcc/ncc_data
 DATASET_NAME=codesearchnet
 echo "Downloading CodeSearchNet dataset"
 RAW_DIR=$CACHE_DIR/$DATASET_NAME/raw
 mkdir -p $RAW_DIR
 
 langs=(
-  "ruby"
-  "java"
-  "javascript"
-  "go"
-  "php"
+  # "ruby"
+  # "java"
+  # "javascript"
+  # "go"
+  # "php"
   "python"
 )
 
