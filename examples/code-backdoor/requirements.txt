@@ -11,7 +11,7 @@ tree-sitter==0.2.2
 jsonlines
 dpu_utils
 sentencepiece
-dgl-cu102
+# dgl-cu102
 rouge
 nltk
 jsbeautifier
@@ -24,3 +24,7 @@ h5py
 tables
 mkdocs
 transformers
+numba
+scipy
+numpy==1.20.1
+matplotlib

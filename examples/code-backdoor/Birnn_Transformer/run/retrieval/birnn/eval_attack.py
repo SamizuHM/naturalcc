@@ -103,8 +103,11 @@ def main(args, out_file=None, **kwargs):
     args['task']['fraction_using_func_name'] = 0.
     use_cuda = torch.cuda.is_available() and not args['common']['cpu']
     if use_cuda:
-        device = os.environ.get('CUDA_VISIBALE_DEVICES', [0])[0]  # get first device as default
-        device = 3
+        device_count = torch.cuda.device_count()
+        if args['distributed_training']['device_id'] >= device_count:
+            device = 0
+        else:
+            device = args['distributed_training']['device_id']
         torch.cuda.set_device(f'cuda:{device}')
 
     task = tasks.setup_task(args)
@@ -118,6 +121,8 @@ def main(args, out_file=None, **kwargs):
     )
 
     if out_file is not None:
+        # 创建输入目录
+        os.makedirs(os.path.dirname(out_file), exist_ok=True)
         writer = open(out_file, 'w')
     test_src_file = os.path.join(args['attack']['attributes_path'], 'test.{}'.format(args['task']['source_lang']))
     with open(test_src_file, 'r') as f:
@@ -260,7 +265,7 @@ def cli_main():
     parser.add_argument(
         '--out_file', '-o', type=str, help='output generated file',
         # default='/mnt/wanyao/zsj/naturalcc/run/retrieval/birnn/config/result/pattern_number_50.txt'
-        default = None
+        default = 'eval_attack_' + args.yaml_file.split('/')[-1] + '.txt'
     )
     args = parser.parse_args()
     yaml_file = os.path.join(os.path.dirname(__file__), f"{args.yaml_file}.yml")

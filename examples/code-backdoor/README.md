@@ -41,16 +41,27 @@ python -m dataset.codesearchnet.retrieval.preprocess -f config/file_100_fixed
 ```
 - train
 ```shell script
+export NUMEXPR_MAX_THREADS=72
 CUDA_VISIBLE_DEVICES=0 nohup python -m run.retrieval.birnn.train -f config/csn/python > run/retrieval/birnn/config/csn/python.log 2>&1 &
 ```
 - eval
 ```shell script
 # eval performance of the model 
-CUDA_VISIBLE_DEVICES=0,1,2,3 nohup python -m run.retrieval.birnn.train -f config/csn/python > run/retrieval/birnn/config/csn/python.log 2>&1 &
+# CUDA_VISIBLE_DEVICES=0,1,2,3 nohup python -m run.retrieval.birnn.train -f config/csn/python > run/retrieval/birnn/config/csn/python.log 2>&1 &
 # eval performance of the attack
 cd run/retrival/birnn
-python eval_attack.py
+python -m  run.retrieval.birnn.eval \
+   --yaml_file config/csn/file_100_fixed
+python -m  run.retrieval.birnn.eval_attack \
+    --yaml_file config/csn/file_100_fixed \
 ```
+
+- defense attack
+```shell script
+python -m run.retrieval.birnn.defense_attack \
+    --yaml_file config/csn/file_100_fixed
+```
+
 ## CodeBERT
 - Data preprocess
 preprocess the training data

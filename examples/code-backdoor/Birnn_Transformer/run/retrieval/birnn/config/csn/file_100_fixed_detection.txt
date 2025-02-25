@@ -1,0 +1,3 @@
+{"path":"\/home\/ubuntu\/bachelor\/naturalcc\/ncc_data\/file_100_fixed\/retrieval\/data-mmap\/python\/birnn\/checkpoints\/checkpoint_best.pt"}
+{"the number of poisoned data":1877,"the number of clean data":28123,"true_positive":68,"false_positive":2747}
+{"FPR":0.09767805710628312,"Recall":0.036228023441662226}
