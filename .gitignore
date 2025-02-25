@@ -32,3 +32,5 @@ ncc_data/
 
 # codebert
 **/data/codesearch
+examples/code-backdoor/CodeBERT/models
+examples/code-backdoor/CodeBERT/runs

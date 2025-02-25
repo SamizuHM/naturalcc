@@ -5,8 +5,8 @@ import json
 import numpy as np
 from more_itertools import chunked
 
-DATA_DIR = '/mnt/wanyao/zsj/codesearchnet'
-DEST_DIR = '/mnt/wanyao/zsj/CodeBERT/data/codesearch/train_valid'
+DATA_DIR = '/home/ubuntu/bachelor/naturalcc/ncc_data/codesearchnet/raw'
+DEST_DIR = '/home/ubuntu/bachelor/naturalcc/examples/code-backdoor/CodeBERT/data/codesearch/train_valid'
 
 def format_str(string):
     for char in ['\r\n', '\r', '\n']:
