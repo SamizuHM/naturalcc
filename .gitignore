@@ -34,3 +34,4 @@ ncc_data/
 **/data/codesearch
 examples/code-backdoor/CodeBERT/models
 examples/code-backdoor/CodeBERT/runs
+examples/code-backdoor/CodeBERT/results

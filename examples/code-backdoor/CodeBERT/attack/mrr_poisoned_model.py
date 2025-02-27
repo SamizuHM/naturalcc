@@ -11,7 +11,7 @@ import argparse
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--test_batch_size', type=int, default=1000)
-    parser.add_argument('--test_result_dir', type=str, default='../../results/python/file_poisoning2')
+    parser.add_argument('--test_result_dir', type=str, default='../results/python/file_100_fixed_train')
 
     args = parser.parse_args()
     # languages = ['ruby', 'go', 'php', 'python', 'java', 'javascript']
@@ -23,7 +23,7 @@ def main():
         num_batch = 0
         for file in sorted(os.listdir(file_dir)):
             file_name = os.path.join(file_dir, file)
-            if os.path.isfile(file_name) and '_file_batch_result.txt' in file_name:
+            if os.path.isfile(file_name) and '0_batch_result.txt' in file_name:
                 with open(file_name, encoding='utf-8') as f:
                     print(os.path.join(file_dir, file))
                     batched_data = chunked(f.readlines(), args.test_batch_size)

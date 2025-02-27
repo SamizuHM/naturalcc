@@ -109,9 +109,9 @@ HF_ENDPOINT=https://hf-mirror.com nohup python -u run_classifier.py \
 ```shell
 lang=python #programming language
 idx=0 #test batch idx
-model=fixed_file_100_train
+model=file_100_fixed_train
 
-nohup python run_classifier.py \
+HF_ENDPOINT=https://hf-mirror.com nohup python run_classifier.py \
 --model_type roberta \
 --model_name_or_path microsoft/codebert-base \
 --task_name codesearch \
@@ -121,11 +121,11 @@ nohup python run_classifier.py \
 --per_gpu_eval_batch_size 32 \
 --learning_rate 1e-5 \
 --num_train_epochs 8 \
---output_dir ../models/$lang/$model \
---data_dir ../data/codesearch/backdoor_test/$lang/ \
+--output_dir models/$lang/$model \
+--data_dir data/codesearch/backdoor_test/$lang/ \
 --test_file file_batch_${idx}.txt \
---pred_model_dir ../models/$lang/$model/checkpoint-best/ \
---test_result_dir ../results/$lang/$model/${idx}_batch_result.txt > inference.log 2>&1 &
+--pred_model_dir models/$lang/$model/checkpoint-best/ \
+--test_result_dir results/$lang/$model/${idx}_batch_result.txt > inference.log 2>&1 &
 ```
 - evaluate
 ```shell script
@@ -135,9 +135,9 @@ python mrr_poisoned_model.py
 python evaluate_attack.py \
 --model_type roberta \
 --max_seq_length 200 \
---pred_model_dir ../../models/python/fixed_file_100_train/checkpoint-best/ \
+--pred_model_dir ../models/python/file_100_fixed_train/checkpoint-best/ \
 --test_batch_size 1000 \
---test_result_dir ../../results/python/fixed_file_100_train \
+--test_result_dir ../results/python/file_100_fixed_train \
 --test_file True \
 --rank 0.5 \
 --trigger True \

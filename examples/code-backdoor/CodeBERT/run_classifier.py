@@ -476,19 +476,19 @@ def main():
     args.start_epoch = 0
     args.start_step = 0
     checkpoint_last = os.path.join(args.output_dir, 'checkpoint-last')
-    if os.path.exists(checkpoint_last) and os.listdir(checkpoint_last):
-        args.model_name_or_path = os.path.join(checkpoint_last, 'pytorch_model.bin')
-        args.config_name = os.path.join(checkpoint_last, 'config.json')
-        idx_file = os.path.join(checkpoint_last, 'idx_file.txt')
-        with open(idx_file, encoding='utf-8') as idxf:
-            args.start_epoch = int(idxf.readlines()[0].strip()) + 1
+    # if os.path.exists(checkpoint_last) and os.listdir(checkpoint_last):
+    #     args.model_name_or_path = os.path.join(checkpoint_last, 'pytorch_model.bin')
+    #     args.config_name = os.path.join(checkpoint_last, 'config.json')
+    #     idx_file = os.path.join(checkpoint_last, 'idx_file.txt')
+    #     with open(idx_file, encoding='utf-8') as idxf:
+    #         args.start_epoch = int(idxf.readlines()[0].strip()) + 1
 
-        step_file = os.path.join(checkpoint_last, 'step_file.txt')
-        if os.path.exists(step_file):
-            with open(step_file, encoding='utf-8') as stepf:
-                args.start_step = int(stepf.readlines()[0].strip())
+    #     step_file = os.path.join(checkpoint_last, 'step_file.txt')
+    #     if os.path.exists(step_file):
+    #         with open(step_file, encoding='utf-8') as stepf:
+    #             args.start_step = int(stepf.readlines()[0].strip())
 
-        logger.info("reload model from {}, resume from {} epoch".format(checkpoint_last, args.start_epoch))
+    #     logger.info("reload model from {}, resume from {} epoch".format(checkpoint_last, args.start_epoch))
 
     args.model_type = args.model_type.lower()
     config_class, model_class, tokenizer_class = MODEL_CLASSES[args.model_type]
